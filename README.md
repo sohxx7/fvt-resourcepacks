@@ -1,21 +1,21 @@
 # FvT Minecraft 26.3 Resource Packs
 
-Fix the second resource-pack reload crash in modded Minecraft 26.3 clients.
+Preserve all 51 FvT screen-effect handlers while repairing Minecraft 26.3 shader reload compatibility.
 
-The previous release replaced the shared `minecraft:core/blit_screen` shader. With the complete Fabulously Optimized mod combination, this reproduced a native `spirv-cross.dll` crash during resource reload even though standalone Shaderc compilation passed.
+The monolithic legacy `main_fx` conditional chain has been separated into individual effect functions with a flat dispatcher. Each of the 51 effect bodies is byte-for-byte identical to the prior effect implementation, including grayscale, inversion, cinematic tinting, bloom and darkening. The dedicated `end_of_frame` pipeline uses private FvT shaders and leaves shared vanilla blit shaders intact. Custom shader effects are enabled.
 
-The screen effects now use the vanilla 26.3 `minecraft:end_of_frame` post chain and a dedicated `fvt:post/screen_effect` shader. The common screen blit remains vanilla. The 51 effect branches are retained; the previously documented fixed-depth and merged-layer limitations remain.
+Native validation used the affected full Fabulously Optimized mod combination, Java 25.0.1, G1, and the user's heap layout in isolated fixtures. All three packs loaded, two actual Minecraft resource reloads completed, and native GPU frames demonstrated grayscale, inversion and darkening. Grayscale pixel analysis confirmed zero RGB-channel difference in the sampled world region. Crash Assistant was excluded only from QA; original client files were not modified.
 
-Particle markers reuse existing shader varyings, and the management-only font mapping document has moved from the font asset directory to `docs/font_mapping.json`.
+The previously documented fixed-depth and merged-layer visual limitations remain. This release retains effect logic; it does not claim complete visual parity with 1.21.7 or exhaustive gameplay validation of every effect.
 
-Validation: reproduced the native crash in an isolated copy of the full mod combination; the repaired pack loaded all three ZIPs successfully and produced a native lobby/HUD framebuffer. Crash Assistant was excluded only from the QA fixture. Public downloads were checked without authentication against SHA-1, SHA-256 and ZIP CRC. Original user mods/configuration were not modified.
+The two supplemental packs, original textures and sounds are unchanged. Apply order: `base.zip`, `Touhou_Holy_Grail_War_sub_1.zip`, `Touhou_Holy_Grail_War_sub_2.zip`.
 
-Apply order: `base.zip`, `Touhou_Holy_Grail_War_sub_1.zip`, `Touhou_Holy_Grail_War_sub_2.zip`. Original project and asset credits: https://github.com/heIp12/fate-vs-touhou-Server/releases/tag/v1.0.0
+Original project and asset credits: https://github.com/heIp12/fate-vs-touhou-Server/releases/tag/v1.0.0
 
-## Current public downloads
+## Public downloads (effects enabled)
 
-- [base.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.3/base.zip)
-- [Touhou_Holy_Grail_War_sub_1.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.3/Touhou_Holy_Grail_War_sub_1.zip)
-- [Touhou_Holy_Grail_War_sub_2.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.3/Touhou_Holy_Grail_War_sub_2.zip)
+- [base.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.6-effects/base.zip)
+- [Touhou_Holy_Grail_War_sub_1.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.6-effects/Touhou_Holy_Grail_War_sub_1.zip)
+- [Touhou_Holy_Grail_War_sub_2.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.6-effects/Touhou_Holy_Grail_War_sub_2.zip)
 
-[SHA-1 / SHA-256 checksums](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.3/manifest.json)
+[Checksums](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.6-effects/manifest.json)
