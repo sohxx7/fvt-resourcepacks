@@ -1,5 +1,7 @@
 # FvT Minecraft 26.3 Resource Packs
 
+Current release fixes the 26.3 particle shader reload failure (`gl_VertexID` → `gl_VertexIndex`). Validated using the client Shaderc library across 152 combinations.
+
 Resource packs for the local FvT server port to Minecraft Java 26.3 (resource format 97.1).
 
 Original project: https://github.com/heIp12/fate-vs-touhou-Server/releases/tag/v1.0.0
@@ -14,8 +16,8 @@ See `manifest.json` for SHA-1/SHA-256 checksums. These public release URLs can b
 
 ## Public downloads
 
-- [base.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.1/base.zip)
-- [Touhou_Holy_Grail_War_sub_1.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.1/Touhou_Holy_Grail_War_sub_1.zip)
-- [Touhou_Holy_Grail_War_sub_2.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.1/Touhou_Holy_Grail_War_sub_2.zip)
+- [base.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.2/base.zip)
+- [Touhou_Holy_Grail_War_sub_1.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.2/Touhou_Holy_Grail_War_sub_1.zip)
+- [Touhou_Holy_Grail_War_sub_2.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.2/Touhou_Holy_Grail_War_sub_2.zip)
 
-[Checksums](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.1/manifest.json)
+[Checksums](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.2/manifest.json)
