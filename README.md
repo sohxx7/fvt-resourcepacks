@@ -1,28 +1,30 @@
 # FvT Minecraft 26.3 Resource Packs
 
-Restore real scene-depth processing and the original world-before-hands render placement while keeping all 51 FvT effect handlers enabled.
+현재 배포: [연출 복구 8](https://github.com/sohxx7/fvt-resourcepacks/releases/tag/v2026.10.27-mc26.3.8-cinematics)
 
-Changes:
-- Sample the actual main-target depth attachment; the fixed `0.994` approximation is removed.
-- Convert 26.3 reverse-Z to the finite forward-depth convention used by the original 1.21.8 formulas (near 0.05; legacy default cloud range 128). A small existing particle-marker region carries the legacy render-distance far plane.
-- Run world effects in the vanilla outline render graph before first-person hands/HUD. Existing Gamerule `1.0-fvt263.3` maintains a private subpixel render cue only during effects, with cleanup after effects, disconnect and plugin shutdown. No client-side helper mod is required.
-- Keep a late-pass fallback so effects remain enabled with an older server JAR until the updated server is started.
-- Preserve ordinary vanilla entity outlines, original effect bodies, textures and sounds. The supplemental ZIPs are unchanged.
+원본 1.21.7 서버의 연출을 26.3에서 복구한 리소스팩입니다. 51개 화면 효과를 유지하며 접속자용 보조 모드는 필요하지 않습니다. 서버는 함께 제공된 Gamerule 1.0-fvt263.4를 사용해야 합니다.
 
-Requires the updated local Gamerule JAR supplied with the server port for the pre-HUD path; this release contains resource packs only.
+## 수정 내용
 
-Validation: isolated Paper/client 1.21.8 reference and 26.3 comparison at view-axis distances 2.5 / 11.5 / 31.5 blocks; eight effect modes captured, real resource reload twice, automatic cue creation/cleanup, 1,517 external API references checked, 26 SPIR-V variants and 208 Shaderc configurations passed. The existing full mod combination was tested separately without changing the user's client installation.
+- 임시 이펙트 엔티티의 청크 준비를 보완해 대형 불꽃·종·성·달 등의 표시 누락을 수정했습니다.
+- 원본 캐릭터 스킨 90개를 서버 실행본에 복원했습니다.
+- 효과 번호·진행값을 지속 표시 신호로 전달해 흡광·반사·왜곡·블룸을 복구했습니다.
+- 배드애플의 BetterModel 호환 오류와 이동 고정 효과가 관전 카메라를 끊던 문제를 수정했습니다.
 
-This restores the depth and render-order behavior. It does not claim every possible overlapping translucent/particle scene is pixel-identical: 26.3 uses composited OIT color rather than exposing all six legacy color attachments to the late post-processing chain. Nondefault legacy cloud-distance settings and every cinematic sequence have not been exhaustively compared.
+원본 Paper/client 1.21.7과 26.3에서 언급한 연출 19종을 실제 재생했습니다. 배드애플은 양쪽에서 전체 재생했으며, POTG의 일반 강조·멀티 킬·렌즈도 녹화한 QA 프레임과 제어한 사망 이벤트로 기존 Replay 렌더러를 검사했습니다. 기존 Fabulously Optimized 모드 54개를 복사한 격리 클라이언트에서 추가 재생과 실제 리소스 재로딩 2회도 마쳤습니다.
 
-Apply order: `base.zip`, `Touhou_Holy_Grail_War_sub_1.zip`, `Touhou_Holy_Grail_War_sub_2.zip`. Checksums: `manifest.json`.
+셰이더 변형 46개, Shaderc 조합 368개, 외부 API 참조 1,517개를 검사했습니다. 공개 다운로드의 크기·CRC·SHA1·SHA256도 인증 없이 검증했습니다. 원본의 모든 독립 색상 버퍼를 재생성한 것은 아니므로 모든 조명·투명도 겹침의 픽셀 단위 동일성을 보장하지는 않습니다.
 
-Original project and asset credits: https://github.com/heIp12/fate-vs-touhou-Server/releases/tag/v1.0.0
+## 다운로드
 
-## Public downloads
+다음 순서로 적용합니다. GitHub 로그인이나 리소스팩 전용 포트 개방이 필요하지 않습니다.
 
-- [base.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.7-depth/base.zip)
-- [Touhou_Holy_Grail_War_sub_1.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.7-depth/Touhou_Holy_Grail_War_sub_1.zip)
-- [Touhou_Holy_Grail_War_sub_2.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.7-depth/Touhou_Holy_Grail_War_sub_2.zip)
+1. [base.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.27-mc26.3.8-cinematics/base.zip)
+2. [Touhou_Holy_Grail_War_sub_1.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.27-mc26.3.8-cinematics/Touhou_Holy_Grail_War_sub_1.zip)
+3. [Touhou_Holy_Grail_War_sub_2.zip](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.27-mc26.3.8-cinematics/Touhou_Holy_Grail_War_sub_2.zip)
 
-[Checksums](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.26-mc26.3.7-depth/manifest.json)
+[SHA1/SHA256 목록](https://github.com/sohxx7/fvt-resourcepacks/releases/download/v2026.10.27-mc26.3.8-cinematics/manifest.json)
+
+서버 실행본의 port263.yml과 Gamerule resourcepacks.yml은 위 공개 주소를 사용합니다. 이 저장소의 릴리스 파일은 리소스팩입니다.
+
+원본 프로젝트 및 리소스 제작: [heIp12/fate-vs-touhou-Server v1.0.0](https://github.com/heIp12/fate-vs-touhou-Server/releases/tag/v1.0.0)
